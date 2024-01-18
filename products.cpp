@@ -70,7 +70,7 @@ int main()
     do
     {
         search_id = getID();
-    } while (search_id < id[0] and search_id > id[SIZE - 1]);
+    } while (search_id < id[0] || search_id > id[SIZE - 1]);
 
     product = getProduct(id, SIZE, search_id);
 
