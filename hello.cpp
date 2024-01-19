@@ -5,18 +5,10 @@ using namespace std;
 
 int main() {
    const int SIZE = 5;
-   int numbers[5];
-
-   // get values for the array
-   for (int& val : numbers) {
-      cout << "enter an interger value: ";
-      cin >> val;
-   }
-
-   // display the values in the array
-   cout << "Here are the values you entered: " << endl;
-   for (int val : numbers) {
-      cout << val << endl;
-   }
+   int numbers[5] = { 1,1,1,1,1 };
+   int anumbers = ++numbers[3];
+   
+   int bnumbers = numbers[4]++;
+   cout << anumbers << endl;
 
 }
