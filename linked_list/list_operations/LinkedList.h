@@ -1,36 +1,38 @@
-// specification file for the NumberList class
-#if !defined(NUMBERLIST_H)
-#define NUMBERLIST_H
+// specification file for the LinkedList class
+#if !defined(LINKEDLIST_H)
+#define LINKEDLIST_H
 #include <iostream>
 
-class NumberList {
+template <class T>
+class LinkedList {
 private:
    struct ListNode {
-      double value;              // the value in this node
+      T value;              // the value in this node
       struct ListNode* next;     // to point to the next node
    };
    ListNode* head;               // List head pointer
 
 public:
    // constructor
-   NumberList(/* args */) { head == nullptr; }
+   LinkedList(/* args */) { head == nullptr; }
    // destructor
-   ~NumberList();
+   ~LinkedList();
 
    // linked list operations
-   void appendNode(double);
-   void insertNode(double);
-   void deleteNode(double);
+   void appendNode(T);
+   void insertNode(T);
+   void deleteNode(T);
    void displayList() const;
 };
 
-void NumberList::appendNode(double num) {
+template <class T>
+void LinkedList<T>::appendNode(T newValue) {
    ListNode* newNode; // to point to a new node
    ListNode* nodePtr;   // to move through the list
 
-   // allocate a new node and store num there
+   // allocate a new node and store newValue there
    newNode = new ListNode;
-   newNode->value = num;
+   newNode->value = newValue;
    newNode->next = nullptr;
 
    // if there are no nodes in the list, make newNode the firstNode
@@ -47,14 +49,15 @@ void NumberList::appendNode(double num) {
    }
 }
 
-void NumberList::insertNode(double num) {
+template <class T>
+void LinkedList<T>::insertNode(T newValue) {
    ListNode* newNode;          // a new node
    ListNode* nodePtr;         // to traverse the list
    ListNode* previousNode; // the previous node
 
-   // allocate a new node and store num there
+   // allocate a new node and store newValue there
    newNode = new ListNode;
-   newNode->value = num;
+   newNode->value = newValue;
 
    if (!head) {
       head = newNode;
@@ -65,8 +68,8 @@ void NumberList::insertNode(double num) {
       nodePtr = head;
       previousNode = nullptr; // initialize previousNode to nullptr
 
-      // skip all nodes whose value is less than num
-      while (nodePtr != nullptr && nodePtr->value < num)
+      // skip all nodes whose value is less than newValue
+      while (nodePtr != nullptr && nodePtr->value < newValue)
       {
          previousNode = nodePtr;
          nodePtr = nodePtr->next;
@@ -84,12 +87,13 @@ void NumberList::insertNode(double num) {
    }
 }
 
-void NumberList::deleteNode(double num) {
+template <class T>
+void LinkedList<T>::deleteNode(T newValue) {
    ListNode* nodePtr;
    ListNode* previousNode;
 
    if (!head) return;
-   if (head->value == num) {
+   if (head->value == newValue) {
       nodePtr = head->next;
       delete head;
       head = nodePtr;
@@ -97,7 +101,7 @@ void NumberList::deleteNode(double num) {
    else {
       // intiialize nodePtr to head of list
       nodePtr = head;
-      while (nodePtr != nullptr && nodePtr->value != num)
+      while (nodePtr != nullptr && nodePtr->value != newValue)
       {
          previousNode = nodePtr;
          nodePtr = nodePtr->next;
@@ -111,7 +115,8 @@ void NumberList::deleteNode(double num) {
    }
 }
 
-void NumberList::displayList() const {
+template <class T>
+void LinkedList<T>::displayList() const {
    ListNode* nodePtr;
    nodePtr = head;
    while (nodePtr) {
@@ -120,7 +125,8 @@ void NumberList::displayList() const {
    }
 }
 
-NumberList::~NumberList() {
+template <class T>
+LinkedList<T>::~LinkedList() {
    ListNode* nodePtr;   // to traverse the list
    ListNode* nextNode;  // to point to the next node
 
@@ -140,4 +146,4 @@ NumberList::~NumberList() {
    
 }
 
-#endif // NUMBERLIST_H
+#endif // LINKEDLIST_H
