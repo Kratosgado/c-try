@@ -1,7 +1,11 @@
 // this program demonstrates the stl stack container adapter
 #include <iostream>
 #include <vector>
-#include <stack> // errors
+#include <stack> 
+
+// stack<int, vector<int>> iStack; // Vector stack
+// stack<int, list<int>> iStack;  // List stack
+// stack<int> iStack; // Default − deque stack
 
 int main() {
    const int MAX = 8;
